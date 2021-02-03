@@ -1,14 +1,18 @@
 import React from "react";
 import jwt from 'jwt-decode';
 import Auth from "../services/Auth";
+import App from "../App";
 
 const UserInfo = () => {
   const currentUser = Auth.getCurrentUser();
   
   const userinfo = jwt(currentUser.token)
   return (
+    
     <div className="container">
+      {/* <App /> */}
       {
+        
         console.log('this is userinfo   ', userinfo)
       }
       <h1>User Information</h1>
@@ -35,6 +39,7 @@ const UserInfo = () => {
         </h3>
         <br></br> 
         <h3 >Token: {currentUser.token}</h3>
+
         </div>
         
       </header>

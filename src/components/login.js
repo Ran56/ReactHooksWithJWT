@@ -3,7 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Auth from "../services/Auth";
-
+import App from '../App';
 const required = (value) => {
   if (!value) {
     return (
@@ -47,9 +47,8 @@ const Login = (props) => {
       Auth.login(name, password).then(
         () => {
           props.history.push("/UserInfo"); // go to UserInfo interface
-          // window.location.reload();
-          // localStorage.setItem('user', 'asd');
-          // console.log('inside login component', localStorage)
+          window.location.reload();//if do not use this statement, after login, narvar will not automatically refresh
+          // console.log('inside login component', localStorage) 
         },
         (error) => {
           const resMessage =
@@ -69,7 +68,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="col-md-12">
+    <div>
       <div className="input-container">
 
         <Form onSubmit={handleLogin} ref={form}>
@@ -104,7 +103,7 @@ const Login = (props) => {
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
-              <span>Login</span>
+              <span>Sign in</span>
             </button>
           </div>
 

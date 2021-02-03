@@ -52,6 +52,10 @@ label {
   padding: 40px 40px ;
 }
 
+.oneLine{
+  display: inline-block;
+}
+
 #wrap{
   word-break:break-word; width: 580px;
 }

@@ -7,6 +7,8 @@ import Login from "./components/login";
 import Register from "./components/register";
 import Home from "./components/Home";
 import UserInfo from "./components/UserInfo";
+import jwt from 'jwt-decode';
+
 
 const App = () => {
 
@@ -17,7 +19,6 @@ const App = () => {
 
     if (user) {
       setCurrentUser(user);
-
     }
   }, []);
 
@@ -28,7 +29,7 @@ const App = () => {
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        
+        {/* from bootstrap navbar className and this also make nav-item into one line*/}
         <Link to={"/"} className="navbar-brand">
           Infinity Games Factory
         </Link>
@@ -43,14 +44,16 @@ const App = () => {
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
+            <h1>{console.log('currentUser is : ',currentUser)}</h1>
             <li className="nav-item">
               <Link to={"/UserInfo"} className="nav-link">
-                {currentUser.username}
+                {jwt(currentUser.token).sub}
               </Link>
             </li>
+
             <li className="nav-item">
               <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
+                Sign out
               </a>
             </li>
           </div>
@@ -58,13 +61,13 @@ const App = () => {
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
               <Link to={"/login"} className="nav-link">
-                Login
+                Sign in
               </Link>
             </li>
 
             <li className="nav-item">
               <Link to={"/register"} className="nav-link">
-                Sign Up
+                Sign up
               </Link>
             </li>
           </div> 
