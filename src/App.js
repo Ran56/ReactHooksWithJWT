@@ -3,8 +3,8 @@ import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Auth from "./services/Auth";
-import Login from "./components/login";
-import Register from "./components/register";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import Home from "./components/Home";
 import UserInfo from "./components/UserInfo";
 import jwt from 'jwt-decode';
@@ -16,7 +16,6 @@ const App = () => {
 
   useEffect(() => {
     const user = Auth.getCurrentUser();
-
     if (user) {
       setCurrentUser(user);
     }
@@ -83,7 +82,7 @@ const App = () => {
         </Switch>
       </div>
     </div>
-    
+
   );
 };
 

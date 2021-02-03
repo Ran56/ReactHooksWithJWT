@@ -1,7 +1,7 @@
 import React from "react";
 import jwt from 'jwt-decode';
 import Auth from "../services/Auth";
-import App from "../App";
+
 
 const UserInfo = () => {
   const currentUser = Auth.getCurrentUser();
@@ -10,9 +10,7 @@ const UserInfo = () => {
   return (
     
     <div className="container">
-      {/* <App /> */}
       {
-        
         console.log('this is userinfo   ', userinfo)
       }
       <h1>User Information</h1>

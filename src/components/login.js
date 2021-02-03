@@ -3,7 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import Auth from "../services/Auth";
-import App from '../App';
+
 const required = (value) => {
   if (!value) {
     return (
@@ -22,7 +22,6 @@ const Login = (props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
   const onChangeName = (e) => {
     const name = e.target.value;
     console.log('name:   ',name);
@@ -38,7 +37,6 @@ const Login = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    setMessage("");
     setLoading(true);
 
     form.current.validateAll();//to check if there is data inside
@@ -50,16 +48,10 @@ const Login = (props) => {
           window.location.reload();//if do not use this statement, after login, narvar will not automatically refresh
           // console.log('inside login component', localStorage) 
         },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
+        (error)=>{
+          console.log('error ',error);
+          window.alert("account or password incorrect!");
           setLoading(false);
-          setMessage(resMessage);
         }
         );
     } else {
@@ -106,14 +98,6 @@ const Login = (props) => {
               <span>Sign in</span>
             </button>
           </div>
-
-          {message && (
-            <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {message}
-              </div>
-            </div>
-          )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>

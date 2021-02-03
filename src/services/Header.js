@@ -7,5 +7,6 @@ export default function Header() {
     } else {
         return {};
     }
+    //this header will be with jwt to sucessfully get data later
 
 }

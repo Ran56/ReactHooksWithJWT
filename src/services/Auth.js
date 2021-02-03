@@ -10,7 +10,7 @@ const API_URL = "http://localhost:8080/auth";
         });
       };
       
-      const login = (name, password) => {
+    const login = (name, password) => {
         return axios
           .post(API_URL, {
             name,
@@ -30,19 +30,19 @@ const API_URL = "http://localhost:8080/auth";
           });
       };
       
-      const logout = () => {
-        localStorage.removeItem("user");
-      };
-      
-      const getCurrentUser = () => {
+    const getCurrentUser = () => {
         console.log('no parse data: ',localStorage.getItem("user"))
             return JSON.parse(localStorage.getItem("user"));
       };
+
+    const logout = () => {
+        localStorage.removeItem("user");
+      };
       
-      export default {
-        register,
-        login,
-        logout,
-        getCurrentUser,
-      }
+export default {
+  register,
+  login,
+  logout,
+  getCurrentUser,
+}
     
