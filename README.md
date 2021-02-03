@@ -1,3 +1,14 @@
+# React Login and Signup with Infinity Games Factory
+
+## Overview
+This React front end project mainly develops Login and Signup page with Hooks, implementing communication with java web back-end project ---InfinityGamesFactory. 
+
+### Project Technical Overview
+1. Home Page: Introduction
+2. Signup/Login Page: for signup, input username with over 3 characters and password with between 6 and 40 characters to sucessfully create an account; for login, input correct username and password
+3. UserInfo Page: after login, the user is able to view its information from back-end project database
+4. Sign out
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
