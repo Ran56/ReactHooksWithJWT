@@ -35,7 +35,7 @@ const Login = (props) => {
   };
 
   const handleLogin = (e) => {
-    e.preventDefault();
+    e.preventDefault();//
 
     setLoading(true);
 
@@ -92,9 +92,9 @@ const Login = (props) => {
 
           <div className="form-group">
             <button className="btn btn-primary btn-block" disabled={loading}>
-              {loading && (
+              {/* {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
-              )}
+              )} */}
               <span>Sign in</span>
             </button>
           </div>
