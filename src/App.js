@@ -16,9 +16,13 @@ const App = () => {
 
   useEffect(() => {
     const user = Auth.getCurrentUser();
-    if (user) {
+    console.log('show user   --------  ',user)
+
+    // if (user) {
       setCurrentUser(user);
-    }
+      console.log('show currentUser   --------  ',currentUser)
+    // }
+
   }, []);
 
   const logOut = () => {
