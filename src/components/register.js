@@ -54,7 +54,7 @@ const verifyPassword = (value) => {
     e.preventDefault();
     setSuccessful(false);
     form.current.validateAll();
-    
+
     console.log('nameRef.current.value',nameRef.current.value)
     
     if(nameRef.current.value && passwordRef.current.value){
@@ -73,8 +73,6 @@ const verifyPassword = (value) => {
     {
       window.alert("Please enter content!");
     }
-      
-    
     }
 
       return (

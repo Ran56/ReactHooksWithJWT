@@ -16,11 +16,10 @@ const App = () => {
 
   useEffect(() => {
     const user = Auth.getCurrentUser();
-    console.log('show user   --------  ',user)
+    console.log('show user in usereffect   --------  ',user)
 
     // if (user) {    ///
       setCurrentUser(user);
-      console.log('show currentUser   --------  ',currentUser)
     // }
 
   }, []);
