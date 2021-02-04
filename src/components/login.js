@@ -17,7 +17,6 @@ const required = (value) => {
 
 const Login = (props) => {
   const form = useRef(); //use useRef to represent this form.
-  const checkBtn = useRef(); //use useRef to represent this button.
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -35,16 +34,13 @@ const Login = (props) => {
   };
 
   const handleLogin = (e) => {
-    e.preventDefault();//
+    e.preventDefault();//////
 
     setLoading(true);
 
-    form.current.validateAll();//to check if there is data inside
-
-    if (checkBtn.current.context._errors.length === 0) {
-      Auth.login(name, password).then(
-        () => {
-          props.history.push("/UserInfo"); // go to UserInfo interface
+  Auth.login(name, password).then(
+    () => {
+        props.history.push("/UserInfo"); // go to UserInfo interface
           window.location.reload();//if do not use this statement, after login, narvar will not automatically refresh
           // console.log('inside login component', localStorage) 
         },
@@ -53,11 +49,8 @@ const Login = (props) => {
           window.alert("account or password incorrect!");
           setLoading(false);
         }
-        );
-    } else {
-      setLoading(false);
-    }
-  };
+    );
+  } 
 
   return (
     <div>
@@ -92,13 +85,9 @@ const Login = (props) => {
 
           <div className="form-group">
             <button className="btn btn-primary btn-block" disabled={loading}>
-              {/* {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )} */}
               <span>Sign in</span>
             </button>
           </div>
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
     </div>
