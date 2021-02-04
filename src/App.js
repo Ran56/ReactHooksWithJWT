@@ -18,7 +18,7 @@ const App = () => {
     const user = Auth.getCurrentUser();
     console.log('show user   --------  ',user)
 
-    // if (user) {
+    // if (user) {    ///
       setCurrentUser(user);
       console.log('show currentUser   --------  ',currentUser)
     // }

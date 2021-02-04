@@ -36,7 +36,6 @@ const verifyPassword = (value) => {
   
   const Register = () => {
     const form = useRef();
-    const checkBtn = useRef();
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
@@ -46,30 +45,29 @@ const verifyPassword = (value) => {
       setName(name);
     };
   
-    const onChangePassword = (e) => {
-      const password = e.target.value;
-      setPassword(password);
-    };
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
+  };
 
-    const handleRegister = (e) => {
-        e.preventDefault();
+  const handleRegister = (e) => {
+    e.preventDefault();
     
+    setSuccessful(false);
+
+    form.current.validateAll();
+
+    Auth.register(name, password).then(
+      (response) => {
+        setSuccessful(true);
+        console.log('response:   ',response);
+      },
+      (error)=>{
+        console.log('error ',error);
+        window.alert("account or password incorrect!");
         setSuccessful(false);
-
-        form.current.validateAll();
-
-        if (checkBtn.current.context._errors.length === 0) {
-          Auth.register(name, password).then(
-            (response) => {
-              setSuccessful(true);
-              console.log('response:   ',response);
-            },
-            (error)=>{
-              console.log('error ',error);
-              window.alert("account or password incorrect!");
-              setSuccessful(false);
-            })
-      };}
+      })
+    }
 
       return (
         <div>
@@ -91,27 +89,25 @@ const verifyPassword = (value) => {
                   </div>
 
                   <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                  validations={[required, verifyPassword]}
-                />
-              </div>
+                    <label htmlFor="password">Password</label>
+                    <Input
+                      type="password"
+                      className="form-control"
+                      name="password"
+                      value={password}
+                      onChange={onChangePassword}
+                      validations={[required, verifyPassword]}
+                    />
+                  </div>
 
-              <div className="form-group">
-                <button className="btn btn-primary btn-block">Sign Up</button>
-              </div>
-            </div>
-          )}
-          
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
-      </div>
-    </div>
+                  <div className="form-group">
+                    <button className="btn btn-primary btn-block">Sign Up</button>
+                  </div>
+                </div>
+              )}         
+            </Form>
+          </div>
+        </div>
   );
 };
 
