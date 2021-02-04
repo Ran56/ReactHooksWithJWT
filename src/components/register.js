@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 import Auth from "../services/Auth";
 
 const required = (value) => {
@@ -39,6 +38,8 @@ const verifyPassword = (value) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
+    const nameRef = useRef();
+    const passwordRef = useRef();
   
     const onChangeName = (e) => {
       const name = e.target.value;
@@ -49,24 +50,31 @@ const verifyPassword = (value) => {
     const password = e.target.value;
     setPassword(password);
   };
-
   const handleRegister = (e) => {
     e.preventDefault();
-    
     setSuccessful(false);
-
     form.current.validateAll();
-
-    Auth.register(name, password).then(
-      (response) => {
-        setSuccessful(true);
-        console.log('response:   ',response);
-      },
-      (error)=>{
-        console.log('error ',error);
-        window.alert("account or password incorrect!");
-        setSuccessful(false);
-      })
+    
+    console.log('nameRef.current.value',nameRef.current.value)
+    
+    if(nameRef.current.value && passwordRef.current.value){
+      Auth.register(name, password).then(
+        (response) => {
+          setSuccessful(true);
+          console.log('response:   ',response);
+        },
+        (error)=>{
+          console.log('error ',error);
+          window.alert("account or password incorrect!");
+          setSuccessful(false);
+        })
+    } 
+    else
+    {
+      window.alert("Please enter content!");
+    }
+      
+    
     }
 
       return (
@@ -85,6 +93,7 @@ const verifyPassword = (value) => {
                       value={name}
                       onChange={onChangeName}
                       validations={[required, verifyName]}
+                      ref={nameRef}
                     />
                   </div>
 
@@ -97,6 +106,7 @@ const verifyPassword = (value) => {
                       value={password}
                       onChange={onChangePassword}
                       validations={[required, verifyPassword]}
+                      ref={passwordRef}
                     />
                   </div>
 
